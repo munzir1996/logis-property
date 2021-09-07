@@ -1,38 +1,20 @@
 <template>
   <div>
 
-    <header class="text-gray-600 body-font shadow-md">
-      <div class="container mx-auto flex flex-wrap p-5 px-16 flex-col md:flex-row items-center">
-        <img class="w-10 h-10" alt="Logis" src="../assets/logo.png">
-
-        <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
-          <a class="mr-5 hover:text-gray-900">First Link</a>
-          <a class="mr-5 hover:text-gray-900">Second Link</a>
-          <a class="mr-5 hover:text-gray-900">Third Link</a>
-          <a class="mr-5 hover:text-gray-900">Fourth Link</a>
-        </nav>
-        <button
-          class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Button
-          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            class="w-4 h-4 ml-1" viewBox="0 0 24 24">
-            <path d="M5 12h14M12 5l7 7-7 7"></path>
-          </svg>
-        </button>
-      </div>
-    </header>
+    <Header/>
 
     <section class="text-gray-600 body-font">
-      <div class="container px-16 py-6 mx-auto flex flex-wrap">
+      <div class="container sm:px-16 py-6 mx-auto flex flex-wrap">
         <div class="flex w-full mb-2 flex-wrap justify-between">
-          <h2 class="sm:text-2xl font-bold font-medium title-font text-gray-900 lg:mb-0 mb-4">
+          <h2 class="sm:text-2xl font-bold font-medium text-left title-font text-gray-900 lg:mb-0 sm:mb-4 px-2 sm:px-0">
             Master Cleanse Magnifique Appartement Bord De Mer à Hammamet
           </h2>
-          <p class="lg:pl-6 leading-relaxed text-base text-xl">
+          <p class="lg:pl-6 px-2 sm:px-0 leading-relaxed text-base text-xl font-bold">
             $1000
           </p>
         </div>
-        <div class="flex w-full mb-6 flex-wrap justify-between">
-          <p class="font-medium title-font text-gray-700 lg:mb-0 mb-4">
+        <div class="flex w-full sm:mb-6 flex-wrap justify-between">
+          <p class="font-medium title-font text-gray-700 lg:mb-0 sm:mb-4 px-2 sm:px-0">
             <span class="underline p-0">
               Hammamet
             </span>
@@ -46,15 +28,18 @@
             </span>
           </p>
           <div class="flex">
-            <button>
+            <button type="button" @click="showModal = !showModal" class="hover:bg-gray-100 px-1.5 py-1.5 rounded-2xl">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
               </svg>
             </button>
-            <button>
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+
+            <Modal v-show="showModal" @close="closeModal" />
+
+            <button class="hover:bg-gray-100 px-1.5 py-1.5 rounded-2xl ml-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
               </svg>
             </button>
@@ -62,14 +47,14 @@
         </div>
 
         <div class="flex flex-wrap md:-m-2 -m-1">
-          <div class="flex flex-wrap w-1/2">
+          <div class="flex flex-wrap sm:w-1/2 w-full">
             <div class="md:p-2 p-1 w-full">
-              <img alt="gallery" class="w-full h-full rounded-2xl object-cover object-center block"
+              <img alt="gallery" class="w-full h-full sm:rounded-2xl object-cover object-center block"
                 src="https://dummyimage.com/600x360">
             </div>
           </div>
 
-          <div class="flex flex-wrap w-1/2">
+          <div class="hidden sm:flex sm:flex-wrap sm:w-1/2">
             <div class="md:p-2 p-1 w-1/2">
               <img alt="gallery" class="w-full object-cover rounded-2xl h-full object-center block"
                 src="https://dummyimage.com/503x303">
@@ -92,14 +77,31 @@
       </div>
     </section>
 
+    <section class="text-gray-600 body-font sm:hidden">
+      <div class="container px-2 mx-auto">
+        <div class="grid grid-cols-2 gap-4">
+          <button  type="submit" class="block col-span-2 w-full py-2 text-center text-white bg-teal-500 rounded-mdhover:bg-teal-600">
+            Appeler
+          </button>
+          <button  type="submit" class="block w-full py-2 text-center text-white bg-teal-500 rounded-mdhover:bg-teal-600">
+            Email
+          </button>
+          <button  type="submit" class="block w-full py-2 text-center text-white bg-teal-500 rounded-mdhover:bg-teal-600">
+            WhatsApp
+          </button>
+        </div>
+      </div>
+
+    </section>
+
     <section class="text-gray-600 body-font">
-      <div class="container px-16 py-6 mx-auto">
-        <div class="grid grid-cols-3 gap-4">
+      <div class="container px-2 sm:px-16 py-6 mx-auto">
+        <div class="sm:grid sm:grid-cols-3 sm:gap-4">
 
           <div class="col-span-2">
-            <div class="border-b pb-8">
+            <div class="border-b pb-4 sm:pb-8">
               <div class="flex">
-                <h2 class="sm:text-xl pb-2 font-bold font-medium title-font text-gray-900 lg:mb-0 mb-4">
+                <h2 class="sm:text-xl pb-2 font-bold font-medium title-font text-gray-900 lg:mb-0 sm:mb-4">
                   Logement entier : appartement. Hôte : Nourhene
                 </h2>
               </div>
@@ -110,23 +112,24 @@
               </div>
             </div>
 
-            <div class="flex border-b py-8">
-              <p class="font-medium title-font text-left text-gray-700 lg:mb-0 mb-4">
+            <div class="flex border-b py-4 sm:py-8">
+              <p class="font-medium title-font text-left text-gray-700 lg:mb-0 sm:mb-4">
                 Bonjour Bonjour !
                 Je vous propose pour vos vacances en bord de mer cet havre de paix en plein cœur de hammamet :-)
                 Idéalement situé, dans la zone touristique Hammamet nord, la résidence côte d'azur en bord de mer entourée de verdure et ayant un accès direct à une plage privée et aménagée . Cet appartement est très bien équipé, dotant d’une magnifique vue sur mer .
               </p>
             </div>
 
-            <div class="flex py-8">
-              <h2 class="sm:text-xl font-bold font-medium title-font text-gray-900 lg:mb-0 mb-4">
+            <div class="flex py-4 py-4 sm:py-8">
+              <h2 class="sm:text-xl font-bold font-medium title-font text-gray-900 lg:mb-0 sm:mb-4">
                 Ce que propose ce logement
               </h2>
             </div>
 
             <div class="grid grid-cols-2">
-              <div>
 
+              <!-- grid -->
+              <div class="text-left">
                 <div class="flex">
                   <svg class="w-6 h-6 mb-6" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 24px; width: 24px; fill: currentcolor;"><path d="M24 27c.988 0 1.945.351 2.671 1.009.306.276.71.445 1.142.483L28 28.5v2l-.228-.006a3.96 3.96 0 0 1-2.443-1.003A1.978 1.978 0 0 0 24 29c-.502 0-.978.175-1.328.491a3.977 3.977 0 0 1-2.67 1.009 3.977 3.977 0 0 1-2.672-1.009A1.978 1.978 0 0 0 16 29c-.503 0-.98.175-1.329.491a3.978 3.978 0 0 1-2.67 1.009 3.978 3.978 0 0 1-2.672-1.008A1.978 1.978 0 0 0 8 29c-.503 0-.98.175-1.33.491a3.96 3.96 0 0 1-2.442 1.003L4 30.5v-2l.187-.008a1.953 1.953 0 0 0 1.142-.483A3.975 3.975 0 0 1 8 27c.988 0 1.945.352 2.671 1.009.35.316.826.49 1.33.491.502 0 .979-.175 1.328-.492A3.974 3.974 0 0 1 16 27c.988 0 1.945.351 2.671 1.009.35.316.826.49 1.33.491.502 0 .979-.175 1.328-.491A3.975 3.975 0 0 1 23.999 27zm0-5c.988 0 1.945.351 2.671 1.009.306.276.71.445 1.142.483L28 23.5v2l-.228-.006a3.96 3.96 0 0 1-2.443-1.003A1.978 1.978 0 0 0 24 24c-.502 0-.978.175-1.328.491a3.977 3.977 0 0 1-2.67 1.009 3.977 3.977 0 0 1-2.672-1.009A1.978 1.978 0 0 0 16 24c-.503 0-.98.175-1.329.491a3.978 3.978 0 0 1-2.67 1.009 3.978 3.978 0 0 1-2.672-1.008A1.978 1.978 0 0 0 8 24c-.503 0-.98.175-1.33.491a3.96 3.96 0 0 1-2.442 1.003L4 25.5v-2l.187-.008a1.953 1.953 0 0 0 1.142-.483A3.975 3.975 0 0 1 8 22c.988 0 1.945.352 2.671 1.009.35.316.826.49 1.33.491.502 0 .979-.175 1.328-.492A3.974 3.974 0 0 1 16 22c.988 0 1.945.351 2.671 1.009.35.316.826.49 1.33.491.502 0 .979-.175 1.328-.491A3.975 3.975 0 0 1 23.999 22zm0-5c.988 0 1.945.351 2.671 1.009.306.276.71.445 1.142.483L28 18.5v2l-.228-.006a3.96 3.96 0 0 1-2.443-1.003A1.978 1.978 0 0 0 24 19c-.502 0-.978.175-1.328.491a3.977 3.977 0 0 1-2.67 1.009 3.977 3.977 0 0 1-2.672-1.009A1.978 1.978 0 0 0 16 19c-.503 0-.98.175-1.329.491a3.978 3.978 0 0 1-2.67 1.009 3.978 3.978 0 0 1-2.672-1.008A1.978 1.978 0 0 0 8 19c-.503 0-.98.175-1.33.491a3.96 3.96 0 0 1-2.442 1.003L4 20.5v-2l.187-.008a1.953 1.953 0 0 0 1.142-.483A3.975 3.975 0 0 1 8 17c.988 0 1.945.352 2.671 1.009.35.316.826.49 1.33.491.502 0 .979-.175 1.328-.492A3.974 3.974 0 0 1 16 17c.988 0 1.945.351 2.671 1.009.35.316.826.49 1.33.491.502 0 .979-.175 1.328-.491A3.975 3.975 0 0 1 23.999 17zM16 1a9 9 0 0 1 8.76 11.072c.71.131 1.374.45 1.911.937.306.276.71.445 1.142.483L28 13.5v2l-.228-.006a3.96 3.96 0 0 1-2.443-1.003 1.951 1.951 0 0 0-1.142-.483l-.145-.007h-.084a2.001 2.001 0 0 0-1.15.378l-.137.112a3.977 3.977 0 0 1-2.67 1.009 3.977 3.977 0 0 1-2.672-1.009A1.978 1.978 0 0 0 16 14c-.503 0-.98.175-1.329.491a3.978 3.978 0 0 1-2.67 1.009 3.978 3.978 0 0 1-2.672-1.008 1.951 1.951 0 0 0-1.142-.484l-.145-.007h-.084a2.002 2.002 0 0 0-1.15.378l-.137.112a3.96 3.96 0 0 1-2.443 1.003L4 15.5v-2l.187-.008a1.953 1.953 0 0 0 1.142-.483 3.916 3.916 0 0 1 1.91-.939A9 9 0 0 1 16 1zm0 2a7 7 0 0 0-6.636 9.235c.482.168.926.429 1.307.774.35.316.826.49 1.33.491.502 0 .979-.175 1.328-.492A3.974 3.974 0 0 1 16 12c.988 0 1.945.351 2.671 1.009.35.316.826.49 1.33.491.439 0 .86-.134 1.191-.38l.137-.111c.38-.345.825-.606 1.304-.776A7 7 0 0 0 16 3z"></path></svg>
                   <p class="font-medium title-font text-gray-900 lg:mb-0 pl-4">Accès plage ou bord de mer</p>
@@ -150,7 +153,7 @@
 
               </div>
 
-              <div>
+              <div class="text-left">
                 <div class="flex">
                   <svg class="w-6 h-6 mb-6" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 24px; width: 24px; fill: currentcolor;"><path d="M26 1a5 5 0 0 1 5 5c0 6.389-1.592 13.187-4 14.693V31h-2V20.694c-2.364-1.478-3.942-8.062-3.998-14.349L21 6l.005-.217A5 5 0 0 1 26 1zm-9 0v18.118c2.317.557 4 3.01 4 5.882 0 3.27-2.183 6-5 6s-5-2.73-5-6c0-2.872 1.683-5.326 4-5.882V1zM2 1h1c4.47 0 6.934 6.365 6.999 18.505L10 21H3.999L4 31H2zm14 20c-1.602 0-3 1.748-3 4s1.398 4 3 4 3-1.748 3-4-1.398-4-3-4zM4 3.239V19h3.995l-.017-.964-.027-.949C7.673 9.157 6.235 4.623 4.224 3.364l-.12-.07zm19.005 2.585L23 6l.002.31c.045 4.321 1.031 9.133 1.999 11.39V3.17a3.002 3.002 0 0 0-1.996 2.654zm3.996-2.653v14.526C27.99 15.387 29 10.4 29 6a3.001 3.001 0 0 0-2-2.829z"></path></svg>
                   <p class="font-medium title-font text-gray-900 lg:mb-0 pl-4">Cuisine</p>
@@ -175,28 +178,61 @@
             </div>
           </div>
 
-          <div>
-            
-            <input type="text" class="form-input w-3/4 rounded mb-4" placeholder="Nom">
-            <input type="text" class="form-input w-3/4 rounded mb-4" placeholder="Téléphone">
-            <input type="text" class="form-input w-3/4 rounded mb-4" placeholder="E-mail">
-            <textarea class="form-textarea w-3/4 rounded mb-4">Je souhaite avoir plus d'information sur ce bien  [Single family home]</textarea>
-            <select class="w-3/4 rounded mb-4">
-              <option></option>
-            </select>
-            <div class="flex">
-              <input type="checkbox" class="form-input mb-4 ml-12 rounded">
-              <label class="pl-2 text-sm text-left">En soumettant ce formulaire, j'accepte Conditions d'utilisation</label>
+          <!-- grid -->
+          <div class="pb-8 sticky hidden sm:block">
+            <div class="grid grid-cols-2">
+              <div class="flex flex-wrap h-28 lg:pl-10">
+                <div class="md:p-2 p-1 w-full">
+                  <img alt="gallery" class="w-full h-full rounded object-cover object-center block"
+                    src="https://dummyimage.com/130x96">
+                </div>
+              </div>
+              <div class="block mt-2 ml-2">
+                <div class="flex">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                  <span class="text-left"> CENTURY 21 – Mutuelleville</span>
+                </div>
+                <div>
+                  <p class="font-bold text-gray-900 mt-2">
+                    Lien vers les annonces
+                  </p>
+                </div>
+              </div>
             </div>
-            <div class="flex justify-center mt-6">
-              <button type="submit" class="block w-full px-11 py-2 mt-4 text-center text-white bg-teal-500 rounded-md sm:w-auto sm:ml-3 sm:mt-0 hover:bg-teal-600 ml-4"> E-mail </button>
-              <button type="submit" class="block w-full px-11 py-2 mt-4 text-center text-white bg-teal-500 rounded-md sm:w-auto sm:ml-3 sm:mt-0 hover:bg-teal-600 ml-4"> Appeler </button>
-            </div>
-            <div class="flex justify-center mt-2">
-              <button type="submit" class="block w-full px-28 py-2 mt-4 text-center text-white bg-teal-500 rounded-md sm:w-auto sm:ml-3 sm:mt-0 hover:bg-teal-600 ml-4"> WhatsApp </button>
+            <div class="grid grid-cols-1 sm:ml-0 lg:ml-12">
+              <input type="text" class="form-input w-full rounded mb-4" placeholder="Nom">
+              <input type="text" class="form-input w-full rounded mb-4" placeholder="Téléphone">
+              <input type="text" class="form-input w-full rounded mb-4" placeholder="E-mail">
+              <textarea class="form-textarea w-full rounded mb-4">Je souhaite avoir plus d'information sur ce bien  [Single family home]</textarea>
+              <select class="w-full rounded mb-4">
+                <option></option>
+              </select>
+              <div class="flex">
+                <input type="checkbox" class="form-input mb-4 rounded">
+                <label class="pl-2 text-sm text-left">En soumettant ce formulaire, j'accepte Conditions d'utilisation</label>
+              </div>
+              <div class="flex justify-center mt-6">
+                <button type="submit" class="block w-full sm:px-4 lg:px-11 py-2 mt-4 text-center text-white bg-teal-500 rounded-md sm:w-auto sm:ml-3 sm:mt-0 hover:bg-teal-600 ml-4"> Email </button>
+                <button type="submit" class="block w-full sm:px-4 lg:px-11 py-2 mt-4 text-center text-white bg-teal-500 rounded-md sm:w-auto sm:ml-3 sm:mt-0 hover:bg-teal-600 ml-4"> Appeler </button>
+              </div>
+              <div class="flex justify-center mt-2">
+                <button type="submit" class="block w-full sm:px-14 lg:px-28 py-2 mt-4 text-center text-white bg-teal-500 rounded-md sm:w-auto sm:ml-3 sm:mt-0 hover:bg-teal-600 ml-4"> WhatsApp </button>
+              </div>
             </div>
           </div>
 
+          <div class="hidden sm:block col-span-2 border-t pt-8">
+            <div class="flex">
+              <h2 class="sm:text-xl font-bold font-medium title-font text-gray-900 lg:mb-0 pb-4">
+                Où se situe le logement
+              </h2>
+            </div>
+            <div>
+              <div style="width: 100%"><iframe width="100%" height="600" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=1%20Grafton%20Street,%20Dublin,%20Ireland+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a href="https://www.maps.ie/draw-radius-circle-map/">Radius map calculator</a></div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -205,14 +241,42 @@
 </template>
 
 <script>
+import Header from './Header.vue'
+import Modal from './Modal.vue'
+
   export default {
-    name: 'HelloWorld',
-    props: {
-      msg: String
-    }
+    name: 'Index',
+    components: {
+      Header,
+      Modal,
+    },
+    props: {},
+    data() {
+      return {
+        showModal: false,
+      };
+    },
+    methods: {
+      showConfirmDeleteModal() {
+        this.showModal = true;
+      },
+      closeModal() {
+        this.showModal = false;
+      },
+      deleteCustomers() {
+        console.log("goodbye");
+      },
+    },
   }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.sticky {
+  position: sticky;
+  top: 0;
+}
 </style>
+
+
+
