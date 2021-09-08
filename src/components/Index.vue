@@ -83,7 +83,7 @@
           <button  type="submit" class="block col-span-2 w-full py-2 text-center text-white bg-teal-500 rounded-mdhover:bg-teal-600">
             Appeler
           </button>
-          <button  type="submit" class="block w-full py-2 text-center text-white bg-teal-500 rounded-mdhover:bg-teal-600">
+          <button  type="submit" @click="showEmailModal = !showEmailModal" class="block w-full py-2 text-center text-white bg-teal-500 rounded-mdhover:bg-teal-600">
             Email
           </button>
           <button  type="submit" class="block w-full py-2 text-center text-white bg-teal-500 rounded-mdhover:bg-teal-600">
@@ -91,6 +91,8 @@
           </button>
         </div>
       </div>
+
+      <EmailModal v-show="showEmailModal" @close="closeEmailModal" />
 
     </section>
 
@@ -243,28 +245,28 @@
 <script>
 import Header from './Header.vue'
 import Modal from './Modal.vue'
+import EmailModal from './EmailModal.vue'
 
   export default {
     name: 'Index',
     components: {
       Header,
       Modal,
+      EmailModal,
     },
     props: {},
     data() {
       return {
         showModal: false,
+        showEmailModal: false,
       };
     },
     methods: {
-      showConfirmDeleteModal() {
-        this.showModal = true;
-      },
       closeModal() {
         this.showModal = false;
       },
-      deleteCustomers() {
-        console.log("goodbye");
+      closeEmailModal() {
+        this.showEmailModal = false;
       },
     },
   }
